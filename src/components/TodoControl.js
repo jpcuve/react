@@ -2,21 +2,24 @@ import React from 'react'
 import {connect} from 'react-redux';
 import Welcome from "./Welcome";
 import TodoList from "./TodoList";
+import TodoAdd from "./TodoAdd";
 import {ApplicationState, Todo} from '../reducers';
-import {toggleTodo} from '../actionTypes';
+import {addTodo, toggleTodo} from '../actionTypes';
 
 
 type Props = {
     todos: Todo[],
-    toggleTodo: (number) => void
+    toggleTodo: (number) => void,
+    addTodo: (string) => void
 };
 
-function Todos(props: Props) {
+function TodoControl(props: Props) {
     return (
         <div>
-            <Welcome name="The new todos page"/>
+            <Welcome name="The new todo control"/>
             <pre>{JSON.stringify(props.todos)}</pre>
             <TodoList todos={props.todos} onTodoClick={props.toggleTodo}/>
+            <TodoAdd onAddText={props.addTodo}/>
         </div>
     )
 }
@@ -29,9 +32,10 @@ const mapStateToProps = (state: ApplicationState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleTodo: (index: number) => dispatch(toggleTodo(index))
+        toggleTodo: (index: number) => dispatch(toggleTodo(index)),
+        addTodo: (text: string) => dispatch(addTodo(text))
     }
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todos)
+export default connect(mapStateToProps, mapDispatchToProps)(TodoControl)

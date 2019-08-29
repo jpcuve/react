@@ -5,7 +5,7 @@ import About from "./About";
 import Repos from "./Repos";
 import Header from "./Header";
 import Home from "./Home";
-import Todos from "./Todos"
+import Todos from "./TodoControl"
 
 export default function App() {
   return (
