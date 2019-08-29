@@ -1,15 +1,15 @@
 import type {Action, VisibilityFilter} from "./actionTypes";
 
-type Todo = {
+export type Todo = {
     text: string,
     completed: boolean
 };
-type State = {
+export type ApplicationState = {
     visibilityFilter: VisibilityFilter,
     todos: Todo[]
 };
 
-export function reduceApp(state: State = {}, action: Action): State {
+export function reduceApp(state: ApplicationState = {}, action: Action): ApplicationState {
     return {
         visibilityFilter: reduceVisibilityFilter(state.visibilityFilter, action),
         todos: reduceTodos(state.todos, action)
