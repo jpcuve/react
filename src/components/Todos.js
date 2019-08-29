@@ -2,11 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux';
 import Welcome from "./Welcome";
 import TodoList from "./TodoList";
-import {ApplicationState} from '../reducers';
+import {ApplicationState, Todo} from '../reducers';
 import {toggleTodo} from '../actionTypes';
 
 
-type Props = {};
+type Props = {
+    todos: Todo[],
+    toggleTodo: (number) => void
+};
 
 function Todos(props: Props) {
     return (
