@@ -1,39 +1,34 @@
 import React from 'react'
+import {connect} from 'react-redux';
 import Welcome from "./Welcome";
 import TodoList from "./TodoList";
-import {store} from '../index';
 import {ApplicationState} from '../reducers';
 import {toggleTodo} from '../actionTypes';
 
 
 type Props = {};
-type State = {
-    current: ApplicationState
+
+function Todos(props: Props) {
+    return (
+        <div>
+            <Welcome name="The new todos page"/>
+            <pre>{JSON.stringify(props.todos)}</pre>
+            <TodoList todos={props.todos} onTodoClick={props.toggleTodo}/>
+        </div>
+    )
+}
+
+const mapStateToProps = (state: ApplicationState) => {
+    return {
+        todos: state.todos
+    };
 };
 
-export default class Todos extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            current: store.getState()
-        };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleTodo: (index: number) => dispatch(toggleTodo(index))
     }
+};
 
-    handleToDoClick(index: number): void {
-        store.dispatch(toggleTodo(index));
-        this.setState((prevState) => prevState.current = store.getState());
-    }
 
-    render() {
-        console.debug(`Context: ${JSON.stringify(this.context.store)}`)
-        return (
-            <div>
-                <Welcome name="The new todos page"/>
-                <pre>{JSON.stringify(this.state.current)}</pre>
-                <TodoList todos={this.state.current.todos}
-                          onTodoClick={(index: number) => this.handleToDoClick(index)}/>
-            </div>
-        )
-    }
-}
+export default connect(mapStateToProps, mapDispatchToProps)(Todos)
