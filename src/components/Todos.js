@@ -26,6 +26,7 @@ export default class Todos extends React.Component<Props, State> {
     }
 
     render() {
+        console.debug(`Context: ${JSON.stringify(this.context.store)}`)
         return (
             <div>
                 <Welcome name="The new todos page"/>
