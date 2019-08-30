@@ -14,7 +14,8 @@ export type ApplicationState = {
     visibilityFilter: VisibilityFilter,
     todoList: Todo[],
     isFetching: false,
-    entityList: {
+    userIds: number[],
+    entity: {
         userList: User[]
     }
 };

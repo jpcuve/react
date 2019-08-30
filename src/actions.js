@@ -30,3 +30,11 @@ export function receiveCustomers(json: Object): Action {
     return {type: 'RECEIVE_CUSTOMERS', 'data': json, receivedAt: Date.now()}
 }
 
+export function fetchCustomers(){
+    return function(dispatch){
+        dispatch(requestCustomers());
+        return fetch(`http:localhost:5000/api/user-list`)
+            .then(res => res.json(), err => console.log(`Error: ${err}`))
+            .then(json => dispatch(receiveCustomers(json)));
+    }
+}

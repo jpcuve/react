@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import App from "./components/App";
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {reduceApp} from "./reducers";
 import {addTodo, setVisibilityFilter, toggleTodo} from "./actions";
+import {createLogger} from "redux-logger";
+import thunkMiddleware from 'redux-thunk';
 
-export const store = createStore(reduceApp);
+const loggerMiddleware = createLogger();
+const store = createStore(reduceApp, applyMiddleware(thunkMiddleware, loggerMiddleware));
 const unsubscribe = store.subscribe(() => console.log(store.getState()));
 store.dispatch(addTodo('Learn about actions'));
 store.dispatch(addTodo('Learn about reducers'));
