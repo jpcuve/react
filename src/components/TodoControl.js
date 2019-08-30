@@ -13,13 +13,13 @@ type Props = {
     addTodo: (string) => void
 };
 
-function TodoControl(props: Props) {
+function TodoControl({todoList, toggleTodo, addTodo}: Props) {
     return (
         <div>
             <Welcome name="The new todo control"/>
-            <pre>{JSON.stringify(props.todoList)}</pre>
-            <TodoList todoList={props.todoList} onTodoClick={props.toggleTodo}/>
-            <TodoAdd onAddText={props.addTodo}/>
+            <pre>{JSON.stringify(todoList)}</pre>
+            <TodoList todoList={todoList} onTodoClick={toggleTodo}/>
+            <TodoAdd onAddText={addTodo}/>
         </div>
     )
 }
