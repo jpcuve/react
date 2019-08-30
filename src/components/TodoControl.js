@@ -4,7 +4,7 @@ import Welcome from "./Welcome";
 import TodoList from "./TodoList";
 import TodoAdd from "./TodoAdd";
 import {ApplicationState, Todo} from '../reducers';
-import {addTodo, toggleTodo} from '../actionTypes';
+import {addTodo, toggleTodo} from '../actions';
 
 
 type Props = {

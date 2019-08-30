@@ -1,4 +1,4 @@
-import type {Action, VisibilityFilter} from "./actionTypes";
+import type {Action, VisibilityFilter} from "./actions";
 
 export type Todo = {
     text: string,

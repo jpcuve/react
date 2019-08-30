@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {reduceApp} from "./reducers";
-import {addTodo, setVisibilityFilter, toggleTodo} from "./actionTypes";
+import {addTodo, setVisibilityFilter, toggleTodo} from "./actions";
 
 export const store = createStore(reduceApp);
 const unsubscribe = store.subscribe(() => console.log(store.getState()));
