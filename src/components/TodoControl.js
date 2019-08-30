@@ -8,7 +8,7 @@ import {addTodo, toggleTodo} from '../actionTypes';
 
 
 type Props = {
-    todos: Todo[],
+    todoList: Todo[],
     toggleTodo: (number) => void,
     addTodo: (string) => void
 };
@@ -17,8 +17,8 @@ function TodoControl(props: Props) {
     return (
         <div>
             <Welcome name="The new todo control"/>
-            <pre>{JSON.stringify(props.todos)}</pre>
-            <TodoList todos={props.todos} onTodoClick={props.toggleTodo}/>
+            <pre>{JSON.stringify(props.todoList)}</pre>
+            <TodoList todoList={props.todoList} onTodoClick={props.toggleTodo}/>
             <TodoAdd onAddText={props.addTodo}/>
         </div>
     )
@@ -26,7 +26,7 @@ function TodoControl(props: Props) {
 
 const mapStateToProps = (state: ApplicationState) => {
     return {
-        todos: state.todos
+        todoList: state.todoList
     };
 };
 

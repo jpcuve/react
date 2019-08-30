@@ -4,15 +4,25 @@ export type Todo = {
     text: string,
     completed: boolean
 };
+
+export type User = {
+    id: number,
+    name: string
+};
+
 export type ApplicationState = {
     visibilityFilter: VisibilityFilter,
-    todos: Todo[]
+    todoList: Todo[],
+    isFetching: false,
+    entityList: {
+        userList: User[]
+    }
 };
 
 export function reduceApp(state: ApplicationState = {}, action: Action): ApplicationState {
     return {
         visibilityFilter: reduceVisibilityFilter(state.visibilityFilter, action),
-        todos: reduceTodos(state.todos, action)
+        todoList: reduceTodoList(state.todoList, action)
     };
 }
 
@@ -25,7 +35,7 @@ function reduceVisibilityFilter(state: VisibilityFilter = "SHOW_ALL", action: Ac
     }
 }
 
-function reduceTodos(state: Todo[] = [], action: Action): Todo[] {
+function reduceTodoList(state: Todo[] = [], action: Action): Todo[] {
     switch (action.type) {
         case "ADD_TODO":
             return [...state, {text: action.text, completed: false}];

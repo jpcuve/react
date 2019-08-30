@@ -3,17 +3,17 @@ import Todo from "./Todo";
 
 type Props = {
     onTodoClick: (number) => void,
-    todos: {
+    todoList: {
         id: number,
         completed: boolean,
         text: string
     }[]
 };
 
-export default function TodoList({onTodoClick, todos}: Props) {
+export default function TodoList({onTodoClick, todoList}: Props) {
     return (
         <ul>
-            {todos.map((todo, index) => (
+            {todoList.map((todo, index) => (
                 <Todo key={index} {...todo} onClick={() => onTodoClick(index)}/>
             ))}
         </ul>
