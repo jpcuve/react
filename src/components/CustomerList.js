@@ -3,15 +3,20 @@ import type {ApplicationState, Customer} from "../reducers";
 import {connect} from "react-redux";
 
 type Props = {
-    customerList: Customer[]
+    isFetching: boolean,
+    items: Customer[]
 }
 
-class CustomerList extends React.Component<Props> {
-    render(){
+function CustomerList({isFetching, items}: Props) {
+    if (isFetching){
+        return (
+            <span>Spinning</span>
+        )
+    } else {
         return (
             <ul>
                 {
-                    this.props.customerList.map(user => (
+                    items.map(user => (
                         <li key={user.id.toString()}>{user.name}</li>
                     ))
                 }
@@ -21,7 +26,8 @@ class CustomerList extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: ApplicationState) => { return {
-    customerList: state.entity.customerList
+    items: state.customerList.items,
+    fetching: state.customerList.isFetching
 }};
 
 export default connect(mapStateToProps)(CustomerList)

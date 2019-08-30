@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import App from "./components/App";
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {createStore, applyMiddleware} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {reduceApp} from "./reducers";
-import {addTodo, fetchCustomers, setVisibilityFilter, toggleTodo} from "./actions";
+import {fetchCustomers} from "./actions";
 import {createLogger} from "redux-logger";
 import thunkMiddleware from 'redux-thunk';
 

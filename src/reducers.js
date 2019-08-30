@@ -10,27 +10,34 @@ export type Customer = {
     name: string
 };
 
+export type CustomerList = {
+    isFetching: boolean,
+    items: Customer[]
+}
+
 export type ApplicationState = {
     visibilityFilter: VisibilityFilter,
     todoList: Todo[],
-    isFetching: false,
-    entity: {
-        customerList: Customer[]
-    }
+    customerList: CustomerList,
 };
 
 export function reduceApp(state: ApplicationState = {}, action: Action): ApplicationState {
     return {
         visibilityFilter: reduceVisibilityFilter(state.visibilityFilter, action),
         todoList: reduceTodoList(state.todoList, action),
-        isFetching: false,
-        entity: {
-            customerList: [
-                {id: 1, name: 'jpc'},
-                {id: 2, name: 'am'}
-            ]
-        }
+        customerList: reduceCustomerList(state.customerList, action)
     };
+}
+
+function reduceCustomerList(state: CustomerList = {isFetching: false, items: []}, action: Action): CustomerList {
+    switch(action.type){
+        case "REQUEST_CUSTOMERS":
+            return {isFetching: true, items:[]};
+        case "RECEIVE_CUSTOMERS":
+            return {isFetching: false, items: action.data};
+        default:
+            return state;
+    }
 }
 
 function reduceVisibilityFilter(state: VisibilityFilter = "SHOW_ALL", action: Action): VisibilityFilter {

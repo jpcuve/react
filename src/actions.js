@@ -33,8 +33,8 @@ export function receiveCustomers(json: Object): Action {
 export function fetchCustomers(){
     return function(dispatch){
         dispatch(requestCustomers());
-        return fetch(`http://localhost:5000/api/users`)
-            .then(res => res.json(), err => console.log(`Error: ${err}`))
+        return fetch(`/data/customers.json`)
+            .then(res => {console.log(res); return res.json()}, err => console.log(`Error: ${err}`))
             .then(json => dispatch(receiveCustomers(json)));
     }
 }
