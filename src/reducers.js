@@ -5,7 +5,7 @@ export type Todo = {
     completed: boolean
 };
 
-export type User = {
+export type Customer = {
     id: number,
     name: string
 };
@@ -15,7 +15,7 @@ export type ApplicationState = {
     todoList: Todo[],
     isFetching: false,
     entity: {
-        userList: User[]
+        customerList: Customer[]
     }
 };
 
@@ -25,7 +25,7 @@ export function reduceApp(state: ApplicationState = {}, action: Action): Applica
         todoList: reduceTodoList(state.todoList, action),
         isFetching: false,
         entity: {
-            userList: [
+            customerList: [
                 {id: 1, name: 'jpc'},
                 {id: 2, name: 'am'}
             ]

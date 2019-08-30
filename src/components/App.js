@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import About from "./About";
-import UserList from "./UserList";
+import UserList from "./CustomerList";
 import Header from "./Header";
 import Home from "./Home";
 import TodoControl from "./TodoControl"

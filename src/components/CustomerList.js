@@ -1,17 +1,17 @@
 import React from 'react';
-import type {ApplicationState, User} from "../reducers";
+import type {ApplicationState, Customer} from "../reducers";
 import {connect} from "react-redux";
 
 type Props = {
-    userList: User[]
+    customerList: Customer[]
 }
 
-class UserList extends React.Component<Props> {
+class CustomerList extends React.Component<Props> {
     render(){
         return (
             <ul>
                 {
-                    this.props.userList.map(user => (
+                    this.props.customerList.map(user => (
                         <li key={user.id.toString()}>{user.name}</li>
                     ))
                 }
@@ -21,7 +21,7 @@ class UserList extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: ApplicationState) => { return {
-    userList: state.entity.userList
+    customerList: state.entity.customerList
 }};
 
-export default connect(mapStateToProps)(UserList)
+export default connect(mapStateToProps)(CustomerList)

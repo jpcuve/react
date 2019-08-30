@@ -1,5 +1,5 @@
 import React from 'react'
-import UserList from "./UserList";
+import UserList from "./CustomerList";
 
 export default class Repos extends React.Component {
     componentDidMount() {
