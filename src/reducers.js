@@ -14,7 +14,6 @@ export type ApplicationState = {
     visibilityFilter: VisibilityFilter,
     todoList: Todo[],
     isFetching: false,
-    userIds: number[],
     entity: {
         userList: User[]
     }
@@ -23,7 +22,14 @@ export type ApplicationState = {
 export function reduceApp(state: ApplicationState = {}, action: Action): ApplicationState {
     return {
         visibilityFilter: reduceVisibilityFilter(state.visibilityFilter, action),
-        todoList: reduceTodoList(state.todoList, action)
+        todoList: reduceTodoList(state.todoList, action),
+        isFetching: false,
+        entity: {
+            userList: [
+                {id: 1, name: 'jpc'},
+                {id: 2, name: 'am'}
+            ]
+        }
     };
 }
 
